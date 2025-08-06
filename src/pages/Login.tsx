@@ -4,23 +4,24 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../Redux/AuthSlice";
+import { Images, Elements } from "../Assets/Assets.js";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [username, setUsername] = useState("emilys");
   const [password, setPassword] = useState("emilyspass");
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     const nth = Math.floor(Math.random() * 30);
     const UsersData = async () => {
       const response = await axios.get("https://dummyjson.com/users");
       console.log(response.data.users[nth]);
       setUsername(response.data.users[nth].username);
       setPassword(response.data.users[nth].password);
-    }
+    };
     UsersData();
-  },[])
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,118 +53,126 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="flex flex-col lg:flex-row lg:gap-50">
-        <div className="mx-5 sm:mx-auto lg:mx-0 my-10 lg:my-0">
+    <div className=" flex justify-center items-center bg-[#0F2027] h-screen">
+      <img
+      loading="lazy"
+        src={Elements.filledcircle2}
+        alt="filledhalfcircle2"
+        className="absolute -top-20 left-20 w-1/3 scale-70 z-0"
+      />
+      <div className="flex flex-col xl:flex-row max-w-[60vw] max-h-[70vh] bg-white overflow-hidden rounded-2xl relative z-10">
+        <div className="overflow-hidden xl:w-2/3 relative z-10">
           <img
-            className="h-screen w-full rounded-2xl lg:rounded-none"
-            src="https://cdn.pixabay.com/photo/2020/02/12/18/53/tower-4843604_1280.jpg"
-            alt="leftSideImage"
+          loading="lazy"
+            src={Images.loginbg}
+            alt="loginbg"
+            className="w-full object-cover h-auto"
           />
-        </div>
-
-        <div className=" flex flex-col items-center justify-center sm:mx-10 my-10 lg:my-0">
-          <form
-            onSubmit={handleSubmit}
-            className="md:w-96 w-80 flex flex-col items-center justify-center"
+          <svg
+            className="absolute top-60 -right-70 h-40 w-full -rotate-90 opacity-0 2xl:opacity-100"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320"
+            preserveAspectRatio="none"
           >
-            <h2 className="text-4xl text-gray-900 font-medium">Sign in</h2>
-            <p className="text-sm text-gray-500/90 mt-3">
-              Welcome back! Please sign in to continue
-            </p>
-
-            <button
-              type="button"
-              className="w-full mt-8 bg-gray-500/10 flex items-center justify-center h-12 rounded-full"
-            >
-              <img
-                src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/login/googleLogo.svg"
-                alt="googleLogo"
-              />
-            </button>
-
-            <div className="flex items-center gap-4 w-full my-5">
-              <div className="w-full h-px bg-gray-300/90"></div>
-              <p className="w-full text-nowrap text-sm text-gray-500/90">
-                or sign in with email
-              </p>
-              <div className="w-full h-px bg-gray-300/90"></div>
-            </div>
-
-            <div className="flex items-center w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
-              <svg
-                width="16"
-                height="11"
-                viewBox="0 0 16 11"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M0 .55.571 0H15.43l.57.55v9.9l-.571.55H.57L0 10.45zm1.143 1.138V9.9h13.714V1.69l-6.503 4.8h-.697zM13.749 1.1H2.25L8 5.356z"
-                  fill="#6B7280"
-                />
-              </svg>
-              <input
-                type="text"
-                placeholder="Enter User Name"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="bg-transparent text-black placeholder-gray-500/80 outline-none text-sm w-full h-full"
-                required
-              />
-            </div>
-
-            <div className="flex items-center mt-6 w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
-              <svg
-                width="13"
-                height="17"
-                viewBox="0 0 13 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M13 8.5c0-.938-.729-1.7-1.625-1.7h-.812V4.25C10.563 1.907 8.74 0 6.5 0S2.438 1.907 2.438 4.25V6.8h-.813C.729 6.8 0 7.562 0 8.5v6.8c0 .938.729 1.7 1.625 1.7h9.75c.896 0 1.625-.762 1.625-1.7zM4.063 4.25c0-1.406 1.093-2.55 2.437-2.55s2.438 1.144 2.438 2.55V6.8H4.061z"
-                  fill="#6B7280"
-                />
-              </svg>
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="bg-transparent placeholder-gray-500/80 outline-none text-sm w-full h-full"
-                required
-              />
-            </div>
-
-            <div className="w-full flex items-center justify-between mt-8 text-gray-500/80">
-              <div className="flex items-center gap-2">
-                <input className="h-5" type="checkbox" id="checkbox" />
-                <label className="text-sm" htmlFor="checkbox">
-                  Remember me
-                </label>
-              </div>
-              <a className="text-sm underline" href="#">
-                Forgot password?
-              </a>
-            </div>
-
-            <button
-              type="submit"
-              className="mt-8 w-full h-11 rounded-full text-white bg-indigo-500 hover:opacity-70 transition-opacity hover:cursor-pointer"
-            >
-              Login
-            </button>
-            <p className="text-gray-500/90 text-sm mt-4">
-              Don’t have an account?{" "}
-              <a className="text-indigo-400 hover:underline" href="#">
-                Sign up
-              </a>
-            </p>
-          </form>
+            <path
+              fill="#ffffff"
+              fillOpacity="1"
+              d="M0,96L48,122.7C96,149,192,203,288,192C384,181,480,107,576,69.3C672,32,768,32,864,64C960,96,1056,160,1152,165.3C1248,171,1344,117,1392,90.7L1440,64L1440,320L0,320Z"
+            />
+          </svg>
         </div>
+        <div className="xl:w-1/3 p-10 z-50">
+          <h1 className="text-4xl font-medium">Welcome</h1>
+          <h1 className="text-4xl font-medium">Back</h1>
+          <div className="my-5">
+            <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="email" className="text-sm">
+                  Email
+                </label>
+                <input
+                  type="text"
+                  name="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Enter your Name"
+                  className="w-full border-2 border-gray-300 rounded-md p-1"
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="password" className="text-sm">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
+                  className="w-full border-2 border-gray-300 rounded-md p-1"
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1">
+                  <input type="checkbox" name="remember" id="remember" />
+                  <label htmlFor="remember" className="text-[12px]">
+                    Remember me
+                  </label>
+                </div>
+                <a href="#" className="text-[12px]">
+                  Forgot password?
+                </a>
+              </div>
+              <button
+                type="submit"
+                className="bg-black border-2 border-black text-white p-3 rounded-md text-sm hover:bg-white hover:text-black hover:cursor-pointer transition-all duration-500"
+              >
+                Sign In
+              </button>
+            </form>
+          </div>
+        </div>
+        <img
+        loading="lazy"
+          src={Elements.whitering}
+          alt="whitering"
+          className="absolute -bottom-45 -left-70 w-5/12 z-20"
+        />
+        <img
+        loading="lazy"
+          src={Elements.whitering}
+          alt="whitering"
+          className="absolute -bottom-20 -left-80 w-5/12 z-20"
+        />
+        <img
+        loading="lazy"
+          src={Elements.filledcircle1}
+          alt="blackring"
+          className="absolute -bottom-40 -right-40 w-1/3 scale-70 z-20"
+        />
+        <img
+        loading="lazy"
+          src={Elements.blackring}
+          alt="blackring"
+          className="absolute -bottom-35 -right-40 w-1/3 scale-70 z-20"
+        />
+        <img
+        loading="lazy"
+          src={Elements.blackring}
+          alt="blackring"
+          className="absolute -bottom-38 -right-40 w-1/3 scale-70 z-20"
+        />
+        <h1 className="absolute top-60 -left-40 text-5xl leading-8  w-full text-white text-center z-10">
+          Millineals Collaboration{" "}
+          <h1>to optimize local potencial for society</h1> in wakatobi island
+        </h1>
+        <div
+          className="absolute inset-0 z-20"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(0,0,0,0.5) 10%, rgba(0,0,0,0) 30%)",
+          }}
+        ></div>
       </div>
     </div>
   );
