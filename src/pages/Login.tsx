@@ -55,21 +55,19 @@ const Login = () => {
   return (
     <div className=" flex justify-center items-center bg-[#0F2027] h-screen">
       <img
-      loading="lazy"
         src={Elements.filledcircle2}
         alt="filledhalfcircle2"
         className="absolute -top-20 left-20 w-1/3 scale-70 z-0"
       />
-      <div className="flex flex-col xl:flex-row max-w-[60vw] max-h-[70vh] bg-white overflow-hidden rounded-2xl relative z-10">
-        <div className="overflow-hidden xl:w-2/3 relative z-10">
+      <div className="flex flex-row max-w-[60vw] max-h-[70vh] bg-white overflow-hidden rounded-2xl relative z-10">
+        <div className="overflow-hidden w-2/3 relative z-10">
           <img
-          loading="lazy"
             src={Images.loginbg}
             alt="loginbg"
             className="w-full object-cover h-auto"
           />
           <svg
-            className="absolute top-60 -right-70 h-40 w-full -rotate-90 opacity-0 2xl:opacity-100"
+            className="absolute top-60 -right-70 h-40 w-full -rotate-90"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1440 320"
             preserveAspectRatio="none"
@@ -81,7 +79,7 @@ const Login = () => {
             />
           </svg>
         </div>
-        <div className="xl:w-1/3 p-10 z-50">
+        <div className="w-1/3 p-10 z-50">
           <h1 className="text-4xl font-medium">Welcome</h1>
           <h1 className="text-4xl font-medium">Back</h1>
           <div className="my-5">
@@ -133,31 +131,26 @@ const Login = () => {
           </div>
         </div>
         <img
-        loading="lazy"
           src={Elements.whitering}
           alt="whitering"
           className="absolute -bottom-45 -left-70 w-5/12 z-20"
         />
         <img
-        loading="lazy"
           src={Elements.whitering}
           alt="whitering"
           className="absolute -bottom-20 -left-80 w-5/12 z-20"
         />
         <img
-        loading="lazy"
           src={Elements.filledcircle1}
           alt="blackring"
           className="absolute -bottom-40 -right-40 w-1/3 scale-70 z-20"
         />
         <img
-        loading="lazy"
           src={Elements.blackring}
           alt="blackring"
           className="absolute -bottom-35 -right-40 w-1/3 scale-70 z-20"
         />
         <img
-        loading="lazy"
           src={Elements.blackring}
           alt="blackring"
           className="absolute -bottom-38 -right-40 w-1/3 scale-70 z-20"
