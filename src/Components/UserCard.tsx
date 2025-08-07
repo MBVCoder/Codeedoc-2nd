@@ -32,7 +32,7 @@ const UserCard = ({ user }: { user: any }) => {
         Edit
       </button>
 
-      <img src={user.image} alt={user.name} className="w-16 h-16 rounded-full mx-auto" />
+      <img src={user.image} loading="lazy" alt={user.name} className="w-16 h-16 rounded-full mx-auto" />
       <h3 className="text-center font-medium mt-2">{user.name}</h3>
       <p className="text-center text-sm text-gray-500">{user.role}</p>
       <p className="text-center text-sm">💰 ${user.salary}</p>

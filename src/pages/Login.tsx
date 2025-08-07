@@ -47,6 +47,7 @@ const Login = () => {
       )
       .then((res) => {
         console.log(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
         localStorage.setItem("accessToken", res.data.accessToken);
         dispatch(setCredentials(res.data));
         toast.success("Login Success");

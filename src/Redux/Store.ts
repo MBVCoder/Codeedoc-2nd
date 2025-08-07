@@ -4,8 +4,8 @@ import UserSlice from "./UserSlice";
 
 const store = configureStore({
   reducer: {
-    Auth: AuthSlice,
-    User: UserSlice,
+    auth: AuthSlice,
+    user: UserSlice,
   },
 });
 
