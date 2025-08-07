@@ -10,7 +10,7 @@ const UserTable = () => {
       <h2 className="text-4xl text-white text-center font-semibold mb-4 mt-10">User Cards</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {users.map((user) => (
+        {users.slice(0, 10).map((user) => (
           <UserCard key={user.id} user={user} />
         ))}
       </div>

@@ -37,14 +37,14 @@ const userSlice = createSlice({
   },
   reducers: {
     toggleUserActive: (state, action) => {
-      const user = state.users.find((u) => u.id === action.payload);
+      const user = state.users.find((u: any) => u.id === action.payload);
       if (user) {
         user.active = !user.active;
       }
       localStorage.setItem("users", JSON.stringify(state.users));
     },
     updateUser: (state, action) => {
-      const index = state.users.findIndex((u) => u.id === action.payload.id);
+      const index = state.users.findIndex((u: any) => u.id === action.payload.id);
       if (index !== -1) {
         state.users[index] = { ...state.users[index], ...action.payload };
         localStorage.setItem("users", JSON.stringify(state.users));
