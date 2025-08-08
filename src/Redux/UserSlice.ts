@@ -4,7 +4,6 @@ const roles = ["Accountant", "Manager", "Developer", "Designer"];
 
 const generateUsers = () => {
   const users = [];
-
   for (let i = 1; i <= 5000; i++) {
     users.push({
       id: i,

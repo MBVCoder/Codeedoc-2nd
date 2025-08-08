@@ -119,8 +119,8 @@ const Login = () => {
           <div className="my-5 relative z-50">
             <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
               <div className="flex flex-col gap-1">
-                <label htmlFor="email" className="text-sm">
-                  Email
+                <label htmlFor="username" className="text-sm">
+                  Username
                 </label>
                 <input
                   type="text"

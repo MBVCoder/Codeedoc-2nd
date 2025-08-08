@@ -8,7 +8,9 @@ const roles = ["Accountant", "Manager", "Developer", "Designer"];
 
 const EditUserModal = () => {
   const dispatch = useDispatch();
-  const { showModal, selectedUser } = useSelector((state: RootState) => state.user);
+  const { showModal, selectedUser } = useSelector(
+    (state: RootState) => state.user,
+  );
   const [formData, setFormData] = useState(selectedUser);
 
   useEffect(() => {
@@ -17,7 +19,9 @@ const EditUserModal = () => {
 
   if (!showModal || !formData) return null;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -32,23 +36,25 @@ const EditUserModal = () => {
 
   return (
     <div className="fixed inset-0 bg-black/90 flex justify-center items-center z-50">
-      <div className="bg-white/80 backdrop-blur-2xl p-6 rounded-lg shadow-lg w-[300px]">
-        <h2 className="text-lg font-bold mb-4">Edit User</h2>
-
-        <label className="block text-sm mb-1">Name</label>
+      <div className="bg-white/40 backdrop-blur-2xl p-6 rounded-2xl shadow-lg w-[300px]">
+        <h2 className="text-2xl font-bold text-center text-transparent bg-gradient-to-r from-slate-900 to-teal-800 bg-clip-text mb-4">
+          Edit Userdata
+        </h2>
+        <hr className="border-white mb-5" />
+        <label className="block text-md mb-1 text-white">New Username</label>
         <input
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="border w-full p-1 mb-3 rounded"
+          className="border w-full p-2 mb-3 rounded-xl bg-[#0F2027] text-white"
         />
 
-        <label className="block text-sm mb-1">Role</label>
+        <label className="block text-md mb-1 text-white">New Role</label>
         <select
           name="role"
           value={formData.role}
           onChange={handleChange}
-          className="border w-full p-1 mb-3 rounded"
+          className="border w-full p-2 mb-3 rounded-xl bg-[#0F2027] text-white hover:cursor-pointer"
         >
           {roles.map((role) => (
             <option key={role} value={role}>
@@ -57,26 +63,32 @@ const EditUserModal = () => {
           ))}
         </select>
 
-        <div className="flex items-center mb-3">
-          <input
-            type="checkbox"
-            checked={formData.active}
-            onChange={handleToggle}
-            className="mr-2"
-          />
-          <span>{formData.active ? "Active" : "Inactive"}</span>
+        <div className="flex items-center mt-3 mb-5">
+          <label className="relative inline-flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              checked={formData.active}
+              onChange={handleToggle}
+              className="sr-only peer"
+            />
+            <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-black rounded-full peer peer-checked:bg-green-600 transition-all duration-300"></div>
+            <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-5"></div>
+          </label>
+          <span className="ml-3 text-md font-semibold">
+            {formData.active ? <p className="text-green-400">Active</p> : <p className="text-red-400">InActive</p>}
+          </span>
         </div>
 
         <div className="flex justify-end gap-2">
           <button
             onClick={() => dispatch(hideEditModal())}
-            className="px-3 py-1 bg-gray-300 rounded text-sm"
+            className="px-4 py-2 border-2 rounded-xl hover:bg-black hover:text-white text-md duration-500 hover:cursor-pointer hover:scale-105"
           >
             Cancel
           </button>
           <button
             onClick={handleSave}
-            className="px-3 py-1 bg-blue-500 text-white rounded text-sm"
+            className="px-4 py-2 border-2 rounded-xl hover:bg-blue-500/60 hover:text-white text-md duration-500 hover:cursor-pointer hover:scale-105"
           >
             Save
           </button>

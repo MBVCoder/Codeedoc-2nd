@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useState, useRef } from "react";
+import { useState, useRef , useEffect } from "react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import Dashboard from "@components/Dashboard";
 import EditUserModal from "@components/EditUserModal";
@@ -10,23 +10,39 @@ import { logout } from "@redux/AuthSlice";
 import { useDispatch } from "react-redux";
 import { Images } from "@assets/Assets";
 
-const COLUMN_COUNT = 4; // Number of columns in your grid
-
 const Home = () => {
   const users = useSelector((state: RootState) => state.user.users);
   const [filteredUsers, setFilteredUsers] = useState(users);
+  const [columnCount, setColumnCount] = useState(getColumnCount());
 
   const parentRef = useRef<HTMLDivElement>(null);
 
+  function getColumnCount() {
+    const width = window.innerWidth;
+    if (width < 640) return 1; // mobile
+    if (width < 1024) return 2; // tablet
+    if (width < 1440) return 3; // laptop
+    return 4; // large screens
+  }
+
+  useEffect(() => {
+    const handleResize = () => {
+      setColumnCount(getColumnCount());
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const rowVirtualizer = useVirtualizer({
-    count: Math.ceil(filteredUsers.length / COLUMN_COUNT), // total rows
+    count: Math.ceil(filteredUsers.length / columnCount), // total rows
     getScrollElement: () => parentRef.current,
     estimateSize: () => 280, // Approx height of each row
     overscan: 5,
   });
 
   const getUserAt = (rowIndex: number, colIndex: number) => {
-    const index = rowIndex * COLUMN_COUNT + colIndex;
+    const index = rowIndex * columnCount + colIndex;
     return filteredUsers[index];
   };
   const dispatch = useDispatch();
@@ -47,8 +63,8 @@ const Home = () => {
             Logout
           </h1>
         </nav>
-      <div className="flex flex-row  divide-gray-500 divide-x-2">
-        <div className="w-1/3 px-5">
+      <div className="flex flex-col lg:flex-row  divide-gray-500 divide-y-2 lg:divide-y-0 lg:divide-x-2">
+        <div className="lg:w-1/3 px-5 lg:mx-auto">
           <Dashboard />
         </div>
         <div className="w-full">
@@ -78,12 +94,12 @@ const Home = () => {
                       transform: `translateY(${virtualRow.start}px)`,
                       width: "100%",
                       display: "grid",
-                      gridTemplateColumns: `repeat(${COLUMN_COUNT}, minmax(0, 1fr))`,
+                      gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))`,
                       gap: "1rem",
                       padding: "0 1rem",
                     }}
                   >
-                    {Array.from({ length: COLUMN_COUNT }).map((_, colIndex) => {
+                    {Array.from({ length: columnCount }).map((_, colIndex) => {
                       const user = getUserAt(virtualRow.index, colIndex);
                       return user && <UserCard key={user.id} user={user} />;
                     })}

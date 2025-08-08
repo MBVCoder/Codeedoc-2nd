@@ -16,8 +16,8 @@ const Dashboard = () => {
   }, {} as Record<string, number>);
 
   return (
-    <div className="rounded-lg mb-4">
-      <div className="flex flex-col gap-5 mb-10 border-2 border-amber-50 rounded-2xl p-5 bg-slate-900/80 backdrop-blur-2xl">
+    <div className="rounded-lg mb-4 flex justify-around lg:flex-col">
+      <div className="flex flex-col gap-5 mb-10 border-2 border-amber-50 rounded-2xl p-5 bg-slate-900/80 backdrop-blur-2xl min-w-1/3 lg:min-w-0">
         <h1 className="text-white text-center text-2xl">Total Users Data</h1>
         <hr className="border-white" />
         <div className=" border-[1px] border-white rounded-4xl hover:-translate-y-2 duration-400 bg-[#0F2027] inset-shadow-sm inset-shadow-black">
@@ -39,7 +39,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="min-w-1/3 lg:min-w-0">
         <div className=" flex flex-col gap-5 border-2 border-amber-50 rounded-2xl p-5 bg-teal-900/80">
           <h1 className="text-white text-center text-2xl">Roles Of Users</h1>
           <hr className="border-white" />

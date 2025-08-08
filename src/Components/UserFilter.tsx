@@ -51,7 +51,7 @@ const UserFilter = ({ allUsers, onFilterChange }: UserFilterProps) => {
   }, [search, role, activeStatus, allUsers, onFilterChange]);
 
   return (
-    <div className="m-6 mt-0 p-4 shadow flex flex-col md:flex-row gap-4 md:items-center rounded-4xl">
+    <div className="m-6 mt-0 p-4 shadow flex flex-col xl:flex-row gap-4 xl:items-center rounded-4xl">
       <input
         type="text"
         placeholder="Search by name..."
@@ -84,7 +84,7 @@ const UserFilter = ({ allUsers, onFilterChange }: UserFilterProps) => {
         <option value="inactive">Inactive</option>
       </select>
 
-      <span className="text-lg text-center text-white">
+      <span className="text-md xl:text-lg text-center text-white">
         Filtered Users: <strong>{filteredCount}</strong>
       </span>
     </div>
