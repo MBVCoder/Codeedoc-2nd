@@ -75,9 +75,25 @@ const Login = () => {
         height={500}
         src={Elements.filledcircle2}
         alt="filledhalfcircle2"
-        className="absolute -top-20 left-20 w-1/3 scale-70 "
+        className="absolute -top-10 xl:-top-20 left-0 w-1/3 scale-90 md:scale-60 hidden xl:block"
       />
-      <div className="flex flex-col min-w-80 sm:flex-row w-[70vw] h-[90vh] sm:h-[70vh] bg-white overflow-hidden rounded-2xl relative">
+      <img
+        loading="eager"
+        width={500}
+        height={500}
+        src={Elements.filledcircle2}
+        alt="filledhalfcircle2"
+        className="absolute right-0 bottom-0 w-1/3 scale-100 hidden xl:block"
+      />
+      <div className="flex flex-col min-w-80 sm:flex-row w-[70vw] h-[90vh] sm:h-[70vh] bg-white overflow-hidden rounded-4xl relative">
+        <div className="absolute hidden xl:block top-50 left-10 xl:left-50 xl:translate-x-[-25%] w-1/2 z-10">
+          <div className="flex flex-col items-center justify-center top-10">
+            <img src={Elements.filledhalfcircle} alt="circle" className="absolute -top-25 w-1/3 z-0" />
+            <h1 className="text-2xl sm:text-4xl xl:text-6xl  text-center text-white font-semibold text-shadow-lg text-shadow-black">
+              Manage Your Users data{" "}
+            </h1>
+          </div>
+        </div>
         <div
           className="absolute inset-0 z-10 hidden sm:block"
           style={{
@@ -94,6 +110,8 @@ const Login = () => {
             width={800}
             height={600}
           />
+          <img loading="lazy" src={Elements.whitering} alt="circle" className="absolute hidden xl:block -bottom-25 -left-35 w-1/3 z-30" />
+          <img src={Elements.whitering} alt="circle" className="absolute hidden xl:block -bottom-15  -left-35 w-1/3 z-30" />
         </div>
         <div className="w-full xl:w-1/3 sm:min-w-1/3 relative p-10 ">
           <h1 className="text-4xl font-medium">Welcome</h1>
@@ -157,6 +175,9 @@ const Login = () => {
               d="M0,96L48,122.7C96,149,192,203,288,192C384,181,480,107,576,69.3C672,32,768,32,864,64C960,96,1056,160,1152,165.3C1248,171,1344,117,1392,90.7L1440,64L1440,320L0,320Z"
             />
           </svg>
+          <img src={Elements.filledcircle1} alt="circle" className="absolute hidden xl:block -right-70 brightness-0 z-30" />
+          <img src={Elements.blackring} alt="circle" className="absolute hidden xl:block -right-70 -bottom-45 brightness-0 z-30" />
+          <img src={Elements.blackring} alt="circle" className="absolute hidden xl:block -right-70 -bottom-40 brightness-0 z-30" />
         </div>
       </div>
     </div>

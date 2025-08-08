@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice , type PayloadAction } from "@reduxjs/toolkit";
 
 const roles = ["Accountant", "Manager", "Developer", "Designer"];
 
@@ -12,10 +12,9 @@ const generateUsers = () => {
       role: roles[Math.floor(Math.random() * roles.length)],
       salary: Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000,
       active: Math.random() < 0.5,
-      image: `https://picsum.photos/seed/${i}/200`,
+      image: `https://robohash.org/user${i}.png`,
     });
   }
-
   return users;
 };
 
@@ -34,6 +33,8 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     users: loadUsers(),
+    showModal: false,
+    selectedUser: null,
   },
   reducers: {
     toggleUserActive: (state, action) => {
@@ -44,14 +45,24 @@ const userSlice = createSlice({
       localStorage.setItem("users", JSON.stringify(state.users));
     },
     updateUser: (state, action) => {
-      const index = state.users.findIndex((u: any) => u.id === action.payload.id);
+      const index = state.users.findIndex(
+        (u: any) => u.id === action.payload.id,
+      );
       if (index !== -1) {
         state.users[index] = { ...state.users[index], ...action.payload };
         localStorage.setItem("users", JSON.stringify(state.users));
       }
     },
+    showEditModal: (state, action: PayloadAction<any>) => {
+      state.showModal = true;
+      state.selectedUser = action.payload;
+    },
+    hideEditModal: (state) => {
+      state.showModal = false;
+      state.selectedUser = null;
+    },
   },
 });
 
-export const { toggleUserActive, updateUser } = userSlice.actions;
+export const { toggleUserActive, updateUser , showEditModal , hideEditModal } = userSlice.actions;
 export default userSlice.reducer;

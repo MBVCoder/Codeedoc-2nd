@@ -118,3 +118,6 @@ Display dynamic stats that update automatically with user edits:
 ---
 
 Good luck! 🚀
+
+# login page figma link
+https://www.figma.com/design/BtHTZv4ahDJgD1toBV8TOm/Millineal---Landing-Sign-in-Login-Page--Community-?node-id=0-1&p=f&t=aFdO3JDMWJFR6D8D-0
