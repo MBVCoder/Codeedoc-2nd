@@ -2,12 +2,13 @@ import { useDispatch } from "react-redux";
 import { showEditModal } from "@redux/UserSlice";
 import type { AppDispatch } from "@redux/store";
 import { Pencil } from "lucide-react";
+import { memo } from "react";
 
 const UserCard = ({ user }: { user: any }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   return (
-    <div className="border p-4 rounded-2xl shadow-md bg-white/10 backdrop-blur-2xl relative">
+    <div className="border p-4 rounded-2xl shadow-sm bg-white/20 backdrop-blur-2xl relative border-white shadow-white">
       <p className={`text-center mt-2 text-sm `}>
         {user.active ? (
           <span className="relative flex size-3">
@@ -39,15 +40,15 @@ const UserCard = ({ user }: { user: any }) => {
         {user.name}
       </h3>
       <hr />
-      <p className="text-center text-md text-gray-500">
+      <p className="text-center text-md text-black">
         <span>User Role : </span>
         {user.role}
       </p>
       <p className="text-center text-md text-green-500">
-        <span className="text-gray-500">Salary : </span> ${user.salary}
+        <span className="text-black">Salary : </span> ${user.salary}
       </p>
     </div>
   );
 };
 
-export default UserCard;
+export default memo(UserCard);

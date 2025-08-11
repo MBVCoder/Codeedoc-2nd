@@ -1,10 +1,10 @@
 import loginbg from "./images/backgorund.png"
-import logo from "./images/Logo.png"
-import blackring from "./elements/Ellipse 49.png"
-import whitering from "./elements/Ellipse 67 4.53.08 PM.png"
-import filledcircle1 from "./elements/Ellipse 45 4.51.29 PM.png"
-import filledcircle2 from "./elements/Ellipse 64.png"
-import filledhalfcircle from "./elements/Ellipse 46.png"
+import logo from "./images/logo.png"
+import blackring from "./elements/ellipse49.png"
+import whitering from "./elements/ellipse67.png"
+import filledcircle1 from "./elements/ellipse45.png"
+import filledcircle2 from "./elements/ellipse64.png"
+import filledhalfcircle from "./elements/ellipse46.png"
 
 export const Images = {
 	loginbg,

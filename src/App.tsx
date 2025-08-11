@@ -7,7 +7,6 @@ import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <>
-    <ToastContainer />
       <Router>
         <Routes>
           <Route
@@ -21,6 +20,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
+      <ToastContainer />
     </>
   );
 }

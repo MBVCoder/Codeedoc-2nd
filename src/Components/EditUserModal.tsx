@@ -6,12 +6,21 @@ import { useState, useEffect } from "react";
 
 const roles = ["Accountant", "Manager", "Developer", "Designer"];
 
+interface User {
+  id: number;
+  name: string;
+  role: string;
+  salary: number;
+  active: boolean;
+  image: string;
+}
+
 const EditUserModal = () => {
   const dispatch = useDispatch();
   const { showModal, selectedUser } = useSelector(
     (state: RootState) => state.user,
   );
-  const [formData, setFormData] = useState(selectedUser);
+  const [formData, setFormData] = useState<User | null>(selectedUser);
 
   useEffect(() => {
     setFormData(selectedUser);
@@ -22,22 +31,26 @@ const EditUserModal = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((prev) =>
+      prev ? { ...prev, [e.target.name]: e.target.value } : prev,
+    );
   };
 
   const handleToggle = () => {
-    setFormData((prev: any) => ({ ...prev, active: !prev.active }));
+    setFormData((prev) => (prev ? { ...prev, active: !prev.active } : prev));
   };
 
   const handleSave = () => {
-    dispatch(updateUser(formData));
-    dispatch(hideEditModal());
+    if (formData) {
+      dispatch(updateUser(formData));
+      dispatch(hideEditModal());
+    }
   };
 
   return (
     <div className="fixed inset-0 bg-black/90 flex justify-center items-center z-50">
       <div className="bg-white/40 backdrop-blur-2xl p-6 rounded-2xl shadow-lg w-[300px]">
-        <h2 className="text-2xl font-bold text-center text-transparent bg-gradient-to-r from-slate-900 to-teal-800 bg-clip-text mb-4">
+        <h2 className="text-2xl font-bold text-center text-white mb-4">
           Edit Userdata
         </h2>
         <hr className="border-white mb-5" />
@@ -75,7 +88,11 @@ const EditUserModal = () => {
             <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-5"></div>
           </label>
           <span className="ml-3 text-md font-semibold">
-            {formData.active ? <p className="text-green-400">Active</p> : <p className="text-red-400">InActive</p>}
+            {formData.active ? (
+              <p className="text-green-400">Active</p>
+            ) : (
+              <p className="text-red-400">InActive</p>
+            )}
           </span>
         </div>
 

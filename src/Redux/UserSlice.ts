@@ -1,17 +1,23 @@
 import { createSlice , type PayloadAction } from "@reduxjs/toolkit";
+import { uniqueNamesGenerator, names } from 'unique-names-generator';
 
 const roles = ["Accountant", "Manager", "Developer", "Designer"];
 
 const generateUsers = () => {
   const users = [];
   for (let i = 1; i <= 5000; i++) {
+    const name = uniqueNamesGenerator({
+      dictionaries: [names],
+      separator: '_',
+      style: 'lowerCase'
+    });
     users.push({
       id: i,
-      name: `Product ${i}`,
+      name,
       role: roles[Math.floor(Math.random() * roles.length)],
       salary: Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000,
       active: Math.random() < 0.5,
-      image: `https://robohash.org/user${i}.png`,
+      image: `https://robohash.org/user${i+1}.png?set=any`,
     });
   }
   return users;
@@ -19,14 +25,22 @@ const generateUsers = () => {
 
 // Load from localStorage (if exists)
 const loadUsers = () => {
-  const stored = localStorage.getItem("users");
-  if (stored) {
-    return JSON.parse(stored);
+  try {
+    // localStorage.removeItem("users");
+    const stored = localStorage.getItem("users");
+    if (stored) return JSON.parse(stored);
+  } catch (err) {
+    console.error("Error loading users from localStorage", err);
   }
   const users = generateUsers();
-  localStorage.setItem("users", JSON.stringify(users));
+  try {
+    localStorage.setItem("users", JSON.stringify(users));
+  } catch (err) {
+    console.error("Error saving users to localStorage", err);
+  }
   return users;
 };
+
 
 const userSlice = createSlice({
   name: "user",

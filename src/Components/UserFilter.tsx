@@ -51,19 +51,19 @@ const UserFilter = ({ allUsers, onFilterChange }: UserFilterProps) => {
   }, [search, role, activeStatus, allUsers, onFilterChange]);
 
   return (
-    <div className="m-6 mt-0 p-4 shadow flex flex-col xl:flex-row gap-4 xl:items-center rounded-4xl">
+    <div className="m-6 p-4 shadow-sm flex flex-col xl:flex-row gap-4 xl:items-center rounded-4xl bg-black/80 shadow-white">
       <input
         type="text"
         placeholder="Search by name..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="border p-2 rounded-4xl w-full text-white"
+        className="border-white border-2 p-2 rounded-4xl w-7/12 text-white"
       />
 
       <select
         value={role}
         onChange={(e) => setRole(e.target.value)}
-        className="border p-2 rounded-4xl w-30 text-white"
+        className="border-white border-2 p-2 rounded-4xl w-30 text-white"
       >
         {roles.map((r) => (
           <option key={r} value={r}>
@@ -77,15 +77,15 @@ const UserFilter = ({ allUsers, onFilterChange }: UserFilterProps) => {
         onChange={(e) =>
           setActiveStatus(e.target.value as "all" | "active" | "inactive")
         }
-        className="border p-2 w-40 text-white rounded-4xl"
+        className="border-white border-2 p-2 w-40 text-white rounded-4xl"
       >
         <option value="all">All Statuses</option>
         <option value="active">Active</option>
         <option value="inactive">Inactive</option>
       </select>
 
-      <span className="text-md xl:text-lg text-center text-white">
-        Filtered Users: <strong>{filteredCount}</strong>
+      <span className="text-md text-center text-white">
+        Users: <strong>{filteredCount}</strong>
       </span>
     </div>
   );
