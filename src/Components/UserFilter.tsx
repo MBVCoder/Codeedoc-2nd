@@ -57,13 +57,13 @@ const UserFilter = ({ allUsers, onFilterChange }: UserFilterProps) => {
         placeholder="Search by name..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="border-white border-2 p-2 rounded-4xl w-7/12 text-white"
+        className="p-2 pl-5 rounded-4xl w-7/12 text-white border-b-[1px] border-white outline-0"
       />
 
       <select
         value={role}
         onChange={(e) => setRole(e.target.value)}
-        className="border-white border-2 p-2 rounded-4xl w-30 text-white"
+        className="border-b-[1px] border-white p-2 rounded-4xl w-30 text-white outline-0 hover:cursor-pointer pl-3"
       >
         {roles.map((r) => (
           <option key={r} value={r}>
@@ -77,14 +77,14 @@ const UserFilter = ({ allUsers, onFilterChange }: UserFilterProps) => {
         onChange={(e) =>
           setActiveStatus(e.target.value as "all" | "active" | "inactive")
         }
-        className="border-white border-2 p-2 w-40 text-white rounded-4xl"
+        className="border-b-[1px] border-white p-2 w-40 text-white rounded-4xl outline-0 hover:cursor-pointer pl-3"
       >
         <option value="all">All Statuses</option>
         <option value="active">Active</option>
         <option value="inactive">Inactive</option>
       </select>
 
-      <span className="text-md text-center text-white">
+      <span className="text-md text-center text-white mx-auto">
         Users: <strong>{filteredCount}</strong>
       </span>
     </div>

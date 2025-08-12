@@ -65,18 +65,18 @@ const Home = () => {
   return (
     <div className="w-full min-h-screen relative">
       <img
-        src="https://cdn.pixabay.com/photo/2017/02/09/15/10/sea-2052650_640.jpg"
+        src="https://cdn.pixabay.com/photo/2016/11/19/11/32/sea-1838763_1280.jpg"
         alt=""
-        className="absolute top-0 left-0 w-full h-full z-0 object-cover"
+        className="absolute top-0 left-0 w-full h-full z-0 object-cover brightness-125 saturate-150"
       />
       <div
         className="absolute top-0 left-0 w-full h-full z-0"
         style={{
           background:
-            "linear-gradient(to top, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0) 50%)",
+            "linear-gradient(to top, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 50%)",
         }}
       ></div>
-      <nav className="flex flex-row justify-between items-center px-5 py-2 mb-5 relative bg-white/80 z-0">
+      <nav className="flex flex-row justify-between items-center px-5 py-2 relative bg-white/90 z-0 mb-5">
         <img
           src={Images.logo}
           alt="logo"
@@ -86,7 +86,7 @@ const Home = () => {
           Dashboard
         </h1>
         <h1
-          className="font-semibold text-md bg-red-400 px-2 py-1 my-auto rounded-lg hover:scale-105 transition-all duration-500 hover:cursor-pointer z-10"
+          className="font-semibold text-md bg-red-500 px-2 py-1 my-auto rounded-lg hover:scale-105 transition-all duration-500 hover:cursor-pointer z-10 text-white hover:bg-red-600"
           onClick={handleClick}
         >
           Logout
@@ -99,11 +99,12 @@ const Home = () => {
         >
           <path
             fill="#fff"
-            fillOpacity="0.8"
+            fillOpacity="0.9"
             d="M0,96L48,122.7C96,149,192,203,288,192C384,181,480,107,576,69.3C672,32,768,32,864,64C960,96,1056,160,1152,165.3C1248,171,1344,117,1392,90.7L1440,64L1440,320L0,320Z"
           />
         </svg>
       </nav>
+      {/* <hr className="border-black relative h-[2px] bg-black my-2" /> */}
       <div className="flex flex-col lg:flex-row  divide-black divide-y-2 lg:divide-y-0 lg:divide-x-2 z-30">
         <div className="lg:w-1/4 px-5 lg:mx-auto pb-5 lg:pb-0 z-30 mb-5 lg:mb-0">
           <Dashboard />
@@ -117,7 +118,7 @@ const Home = () => {
           ) : (
             <div
               ref={parentRef}
-              className="relative overflow-auto h-[70vh]" // scroll container
+              className="relative overflow-auto h-[85vh] 2xl:h-[72vh]" // scroll container
             >
               <div
                 style={{
