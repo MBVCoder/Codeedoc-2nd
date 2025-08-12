@@ -67,7 +67,7 @@ const Home = () => {
       <img
         src="https://cdn.pixabay.com/photo/2016/11/19/11/32/sea-1838763_1280.jpg"
         alt=""
-        className="absolute top-0 left-0 w-full h-full z-0 object-cover brightness-125 saturate-150"
+        className="absolute top-0 left-0 w-full h-full z-0 object-cover brightness-125 saturate-150 blur-xs"
       />
       <div
         className="absolute top-0 left-0 w-full h-full z-0"
